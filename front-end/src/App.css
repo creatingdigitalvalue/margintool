@@ -1,0 +1,147 @@
+:root {
+  --accent-color:         #70AC3E;
+  --red-color:            #F73535;
+  --white-color:          #FAEBE7;
+  --card-color:           #B9CCBF;
+  --black-color:          #191A1B;
+  --bg-color:             #E7FFEF;
+
+
+  --text-color:           #191A1B;
+  --link-color:           #efc172;
+  --link-hover-color:     #2D77D2;
+
+
+  --fs-xl: clamp(0.5rem, 12vw + 0.25rem, 2.5rem);
+  --fs-600: 1.5rem;
+  --fs-500: 1rem;
+  --fs-400: 0.9rem;
+
+  --border-radius-large:  100%;
+  --border-radius-small:  2px;
+
+  --wrapper-padding-inline-mob: 1rem;
+  --wrapper-padding-inline-desk: 10rem
+}
+
+@media (min-width: 40em) {
+  :root {
+    --fs-xl: clamp(1rem, 12vw + 0.5rem, 4.5rem);
+    --fs-600:2rem;
+    --fs-500:1rem;
+    --fs-400:1.125rem;
+  }
+}
+
+body{
+  background-color: var(--bg-color);
+}
+
+.container {
+  max-width: 60rem;
+  margin-inline: auto;
+  padding-inline: var(--wrapper-padding-inline-mob);
+ }
+
+.header-row{
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 16px;
+}
+
+
+.ingredient-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+
+  padding-top: 5rem;
+}
+
+.ingredient-card{
+  background-color: var(--card-color);
+  border-radius: 10px 10px 0px 0px;
+  padding-inline: 1fr;
+  padding-block: 1fr;
+
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.3);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-card-wrapper{
+  display: grid;
+}
+
+.form-card{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100vw;
+  background-color: var(--card-color);
+  border-radius: 10px 10px 0px 0px;
+
+}
+
+form.add-ingredient-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap:16px;
+  padding: 5rem;
+}
+
+button{
+  background-color: #70AC3E;
+  border: none;
+  height: 5rem;
+  width: 5rem;
+
+  border-radius: 10px;
+}
+
+
+.delete-button{
+  background-color: var(--red-color)  !important;
+
+  width: 102%;
+  height: 45px;
+  border-radius: 0px 0px 10px 10px !important;
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.3);
+}
+
+.search-bar{
+  height: 30px;
+  width: 200px;
+
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  background-color: var(--card-color);
+}
+
+
+.svg-box{
+  background-color: var(--accent-color);
+  width: 30px;
+  height: 32px;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+}
+
+.search-wrapper{
+  display: flex;
+}
+
+.button-wrapper{
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
