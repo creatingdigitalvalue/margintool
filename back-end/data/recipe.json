@@ -1,0 +1,95 @@
+{
+    "recipe": {
+      "chicken patty": {
+        "123": [
+          {
+            "id": 1,
+            "timestamp": "2024-03-19T12:00:00Z",
+            "amount": 150,
+            "unit": "g",
+            "price": 0.98
+          },
+          {
+            "id": 2,
+            "timestamp": "2024-03-18T12:00:00Z",
+            "amount": 150,
+            "unit": "g",
+            "price": 1.02
+          }
+        ]
+      },
+      "hamburger bread": {
+        "456": [
+          {
+            "id": 1,
+            "timestamp": "2024-03-19T12:00:00Z",
+            "amount": 80,
+            "unit": "g",
+            "price": 0.50
+          },
+          {
+            "id": 2,
+            "timestamp": "2024-03-18T12:00:00Z",
+            "amount": 80,
+            "unit": "g",
+            "price": 0.72
+          }
+        ]
+      },
+      "romaine salad": {
+        "789": [
+          {
+            "id": 1,
+            "timestamp": "2024-03-19T12:00:00Z",
+            "amount": 30,
+            "unit": "g",
+            "price": 0.23
+          },
+          {
+            "id": 2,
+            "timestamp": "2024-03-18T12:00:00Z",
+            "amount": 30,
+            "unit": "g",
+            "price": 0.27
+          }
+        ]
+      },
+      "tomaten": {
+        "987654": [
+          {
+            "id": 1,
+            "timestamp": "2024-03-19T12:00:00Z",
+            "amount": 1,
+            "unit": "unit",
+            "price": 3.99
+          },
+          {
+            "id": 2,
+            "timestamp": "2024-03-18T12:00:00Z",
+            "amount": 1,
+            "unit": "unit",
+            "price": 4.49
+          }
+        ]
+      },
+      "chicken_burger": {
+        "456789": [
+          {
+            "id": 1,
+            "timestamp": "2024-03-19T12:00:00Z",
+            "amount": 1,
+            "unit": "unit",
+            "price": 4.99
+          },
+          {
+            "id": 2,
+            "timestamp": "2024-03-18T12:00:00Z",
+            "amount": 1,
+            "unit": "unit",
+            "price": 5.49
+          }
+        ]
+      }
+    }
+  }
+  
