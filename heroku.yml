@@ -17,14 +17,13 @@ run:
     detach: true
     environment:
       - NODE_ENV=production
-    addons:
-      - plan: heroku-postgresql
-        as: DATABASE
     depends_on:
       - DATABASE
+
   front-end:
     command: npm start
     detach: true
+
   nginx:
     command: nginx -g "daemon off;"
     detach: true
