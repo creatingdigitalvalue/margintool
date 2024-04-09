@@ -1,15 +1,20 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+
 build:
   docker:
-    web: ./front-end
-    api: ./back-end
-    nginx: ./nginx
+    web: ./front-end/Dockerfile
+    back-end: ./back-end/Dockerfile
+    nginx: ./nginx/Dockerfile
 
 run:
   web:
     command: npm start
     detach: false
 
-  api:
+  back-end:
     command: npm start
     detach: false
     environment:
@@ -20,7 +25,3 @@ run:
     detach: false
     ports:
       - "8000:80"
-
-addons:
-  - plan: heroku-postgresql
-    as: DATABASE
