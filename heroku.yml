@@ -1,36 +1,25 @@
 build:
-  back-end:
-    docker:
-      context: ./back-end
-
-  front-end:
-    docker:
-      context: ./front-end
-
-  nginx:
-    docker:
-      context: ./nginx
+  docker:
+    web: ./front-end
+    api: ./back-end
+    nginx: ./nginx
 
 run:
-  back-end:
+  web:
+    command: npm start
+    detach: true
+
+  api:
     command: npm start
     detach: true
     environment:
       - NODE_ENV=production
-    depends_on:
-      - DATABASE
-
-  front-end:
-    command: npm start
-    detach: true
 
   nginx:
     command: nginx -g "daemon off;"
     detach: true
     ports:
       - "8000:80"
-    depends_on:
-      - back-end
 
 addons:
   - plan: heroku-postgresql
