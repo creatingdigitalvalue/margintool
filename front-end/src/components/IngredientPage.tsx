@@ -25,7 +25,7 @@ const IngredientPage: React.FC = () => {
     fetch('http://localhost:3000/api/ingredients')
       .then(response => response.json())
       .then(data => {
-        setIngredients(data);
+        setIngredients(data || []); // Ensure data is not undefined before setting state
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []); // Empty dependency array to ensure it only runs once on component mount
@@ -47,20 +47,60 @@ const IngredientPage: React.FC = () => {
     }
   }, [selectedIngredient]);
 
+  // Filter ingredients based on search query
+  const filteredIngredients = ingredients.filter(ingredient => {
+    return ingredient.ingredient_name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+  
+  // Function to reload ingredients
+  const reloadIngredients = () => {
+    fetch('http://localhost:3000/api/ingredients')
+      .then(response => response.json())
+      .then(data => {
+        setIngredients(data || []); // Ensure data is not undefined before setting state
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  };
+
+  // Function to handle adding a new ingredient
+  const handleAddIngredient = (newIngredient: any) => {
+    fetch('http://localhost:3000/api/ingredients', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newIngredient),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to add ingredient');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setIngredients(prevIngredients => {
+        // Assuming newIngredient has unique ID
+        return [...prevIngredients, newIngredient];
+      });
+      setShowForm(false);
+    })
+    .catch(error => {
+      console.error('Error adding ingredient:', error);
+    });
+  };
+
+  // Function to handle click on ingredient card
   const handleCardClick = (ingredientId: string) => {
     setSelectedIngredient(ingredientId);
   };
 
-  const filteredIngredients = Object.keys(ingredients).filter(ingredient => {
-    return ingredient.toLowerCase().includes(searchQuery.toLowerCase());
-  });
 
   return (
     <div className="container">
       <div className="header-row">
         <h1>Ingredients</h1>
       </div>
-
+      <div className='button-wrapper'>    
       <div className='search-wrapper'>
           <div className='svg-box'>
           <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,8 +115,7 @@ const IngredientPage: React.FC = () => {
           onChange={e => setSearchQuery(e.target.value)}
         />
         </div>
-
-        <div className='button-wrapper'>        
+    
                   <button onClick={() => setShowForm(true)}><svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.5 0C14.3736 0 13.4605 0.913113 13.4605 2.03947V13.4606H2.03947C0.913113 13.4606 0 14.3736 0 15.5C0 16.6265 0.913113 17.5395 2.03947 17.5395H13.4605V28.9605C13.4605 30.0869 14.3736 31 15.5 31C16.6264 31 17.5395 30.0869 17.5395 28.9605V17.5395H28.9605C30.0869 17.5395 31 16.6265 31 15.5C31 14.3736 30.0869 13.4606 28.9605 13.4606H17.5395V2.03947C17.5395 0.913113 16.6264 0 15.5 0Z" fill="#B5E48D"/>
         </svg>
@@ -91,11 +130,17 @@ const IngredientPage: React.FC = () => {
             ingredient={ingredient.ingredient_name}
             ingredient_id={ingredient.ingredient_id}            
             onClick={() => handleCardClick(ingredient.ingredient_id)}
-            onDeleteIngredient={() => {}}
+            onDeleteIngredient={reloadIngredients} // Pass the reloadIngredients function as a prop
           />
         ))}
       </div>
     
+      {/* Conditionally render the AddIngredientForm */}
+      {showForm && <AddIngredientForm 
+        onSubmit={handleAddIngredient} // Assuming handleAddIngredient is a function to handle form submission
+        setShowForm={setShowForm} 
+      />}
+
 
       {/* Overlay menu to display additional information */}
       {selectedIngredient && additionalInfo && (

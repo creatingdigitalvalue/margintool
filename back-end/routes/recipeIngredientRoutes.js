@@ -5,5 +5,6 @@ const recipeIngredientController = require('../controllers/recipeIngredientContr
 // GET all ingredients
 router.get('/', recipeIngredientController.getAllRecipeIngredients);
 router.get('/:recipe_id', recipeIngredientController.getRecipeIngredientsAndName);
+router.post('/', recipeIngredientController.createRecipeWithIngredients);
 
 module.exports = router;

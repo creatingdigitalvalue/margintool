@@ -32,7 +32,7 @@ const RecipeDetailsPage: React.FC = () => {
     }, [recipeId]); // Include recipeId in the dependency array to re-run effect when recipeId changes
 
     return (
-        <div>
+        <div className='container'>
             <h1>Recipe Details</h1>
             <p>Recipe ID: {recipeId}</p>
             <h2>Ingredient Recipes:</h2>
@@ -40,7 +40,7 @@ const RecipeDetailsPage: React.FC = () => {
                 <div className='ingredient-recipes'>
                     {ingredientRecipes.map(ingredientRecipe => (
                         <div className="ingredient-card" key={`${ingredientRecipe.recipe_id}-${ingredientRecipe.ingredient_id}`}>
-                            <p>{ingredientRecipe.ingredient_name}</p>
+                            <h3>{ingredientRecipe.ingredient_name}</h3>
                             <p>Amount: {ingredientRecipe.ingredient_amount} {ingredientRecipe.ingredient_amount_unit}</p>
                             <p>Waste: {ingredientRecipe.ingredient_amount_waste}</p>
                             <p>Amount added: {ingredientRecipe.ingredient_amount_totaly_added} {ingredientRecipe.ingredient_amount_unit}</p>
@@ -50,8 +50,10 @@ const RecipeDetailsPage: React.FC = () => {
                 </div>
             </div>
             <h2>Summary:</h2>
-            <p>Net Amount Produkts: € {sumOfNewValues}</p>
-            <p>Gross Amount Target Price: € {multipliedValue}</p>
+            <div className="ingredient-recipes-summary">
+                <p>Net Amount Produkts: € {sumOfNewValues}</p>
+                <p>Gross Amount Target Price: € {multipliedValue}</p>
+            </div>
         </div>
     );
 };

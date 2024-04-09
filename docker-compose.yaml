@@ -1,0 +1,51 @@
+version: '3'
+
+services: 
+
+  back-end:
+    build: 
+      context: ./back-end
+    container_name: back-end
+    working_dir: /usr/src/app
+    networks: 
+      - node-network
+    volumes: 
+      - ./back-end:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    ports: 
+      - "3000:3000"
+    command: npm start
+
+  front-end:
+    build: 
+      context: ./front-end
+    container_name: front-end
+    working_dir: /usr/src/app
+    networks: 
+      - node-network
+    volumes: 
+      - ./front-end:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    ports: 
+      - "3006:3006"
+    command: npm start
+
+  nginx:
+    build: 
+      context: nginx
+    container_name: nginx
+    restart: always
+    tty: true
+    ports: 
+      - "8000:80"
+    networks: 
+      - node-network
+    depends_on:
+       - back-end
+       - front-end
+  
+networks: 
+  node-network:
+    driver: bridge

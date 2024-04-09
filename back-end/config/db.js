@@ -1,23 +1,20 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('margintool', 'postgres', '123', {
-    host: 'localhost',
-    port: 5432, // Port number
-    dialect: 'postgres',
-    logging: true // Disable logging SQL queries (optional)
-  });
-  
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dialect: 'postgres',
+  logging: true
+});
 
 // Test the connection
-async function testConnection() {
-  try {
-    await sequelize.authenticate();
+sequelize.authenticate()
+  .then(() => {
     console.log('Connection to the database has been established successfully.');
-  } catch (error) {
+  })
+  .catch(error => {
     console.error('Unable to connect to the database:', error);
-  }
-}
-
-testConnection();
+  });
 
 module.exports = sequelize;

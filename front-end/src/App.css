@@ -1,10 +1,11 @@
 :root {
-  --accent-color:         #70AC3E;
+  --accent-color:         #9BCF53;
+  --mood-color:            #416D19;
   --red-color:            #F73535;
-  --white-color:          #FAEBE7;
+  --white-color:          #FFF67E;
   --card-color:           #B9CCBF;
   --black-color:          #191A1B;
-  --bg-color:             #E7FFEF;
+  --bg-color:             #9BCF53;
 
 
   --text-color:           #191A1B;
@@ -37,6 +38,17 @@ body{
   background-color: var(--bg-color);
 }
 
+h1{
+   color: var(--mood-color);
+}
+
+h2{
+  color: var(--mood-color);
+}
+
+p {
+  color: var(--accent-color);
+}
 
 .App {
   display: flex;
@@ -53,7 +65,7 @@ body{
   border: 1px solid #ccc;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Ensure the overlay is above other content */
+  z-index: 999; /* Ensure the overlay is above other content */
   max-width: 400px;
 }
 
@@ -84,11 +96,17 @@ body{
   flex-grow: 1;
 }
 
+svg path{
+  fill: var(--white-color);
+}
+
+
 .bottom-nav {
-  background-color: var(--accent-color);
+  background-color: var(--mood-color);
   position: fixed;
   border-radius: 20px 20px 0px 0px;
   bottom: 0;
+  z-index: 1000;
   width: 100%;
 }
 
@@ -131,44 +149,143 @@ body{
 
 .ingredient-list{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
 
-  padding-top: 5rem;
+  height: 67.5vh;
+
+  margin-top: 2.5rem;
+  padding: 1rem;
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+
+}
+
+.ingredient-list.overlay{
+  height: 60vh;
 }
 
 .ingredient-recipes{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
 }
 
+.close-form-button{
+  padding-left: 52.5rem;
+}
+.close-form-button path{
+  fill:var(--mood-color)
+}
 
+.ingredient-card p {
+  color: var(--white-color);
+}
+
+.ingredient-recipes-summary p{
+  color: var(--white-color);
+}
+
+.ingredient-recipes .ingredient-card{
+  height: 12rem;
+}
+
+.ingredient-recipes-summary{
+  display: grid;
+
+  width: 50%;
+  background-color: var(--mood-color);
+  opacity: 0.8;
+
+  border-radius: 10px;
+}
 
 .ingredient-card{
-  background-color: var(--card-color);
-  border-radius: 10px 10px 0px 0px;
-  padding-inline: 1fr;
-  padding-block: 1fr;
+  position: relative;
+  background-color: var(--mood-color);
+  border-radius: 10px 10px 10px 10px;
+  height: 125px;
+
+  opacity: 0.8;
+
+
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.3);
+}
+
+.recipe-overlay{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  width: 100%;
+  padding: 0.5rem;
+  height: 100vh;
+}
+
+.recipe-card{
+  position: relative;
+  background-color: var(--mood-color);
+  border-radius: 10px 10px 10px 10px;
+  height: 125px;
+
+  opacity: 0.8;
+
 
   box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.3);
 
-  align-items: center;
-  justify-content: center;
+}
+
+.recipe-card h3{
+  color: var(--white-color);
+  padding: 0.5rem
+}
+
+.ingredient-card svg {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.recipe-card svg {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.ingredient-card h3 {
+  color: var(--white-color);
+  padding: 0.5rem;
+}
+
+.ingredient-card h3 {
+  color: var(--white-color);
+  padding-left: 0.75rem;
 }
 
 .ingredient-card-wrapper{
   display: grid;
+  position: relative; /* Set the parent container to relative positioning */
+  margin-bottom: 20px;
 }
 
 .form-card{
   position: absolute;
+  display: grid;
+  align-items: center;
   bottom: 0;
   left: 0;
+  height: 60vh;
+  width: 98vw;
+  background-color: var(--accent-color);
+  border-radius: 20px 20px 0px 0px;
+  border: 1vw solid var(--mood-color) 
 
-  width: 100vw;
-  background-color: var(--card-color);
-  border-radius: 10px 10px 0px 0px;
+}
 
+form.add-ingredient-form input{
+  height: 2.75vh;
+  border-radius: 5px;
+  border: none !important
 }
 
 form.add-ingredient-form{
@@ -176,17 +293,19 @@ form.add-ingredient-form{
   grid-template-columns: 1fr;
   grid-gap:16px;
   padding: 5rem;
+  margin-bottom: 10rem;
 }
 
 button{
-  background-color: #70AC3E;
+  background-color: var(--mood-color);
   border: none;
   height: 5rem;
   width: 5rem;
 
+  color: var(--white-color);
+
   border-radius: 10px;
 }
-
 
 .open-menu-button{
   width: 102%;
@@ -201,12 +320,11 @@ button{
 
   border-radius: 0px 5px 5px 0px;
   border: none;
-  background-color: var(--card-color);
+  background-color: var(--white-color);
 }
 
-
 .svg-box{
-  background-color: var(--accent-color);
+  background-color: var(--mood-color);
   width: 30px;
   height: 32px;
 
@@ -225,21 +343,127 @@ button{
 .button-wrapper{
   display: flex;
 
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+
+  padding-inline: 0.5rem;
+}
+
+.button-wrapper-right{
+  display: flex;
+
+  justify-content:right;
+  align-items: center;
+
+  padding-inline: 0.5rem;
 }
 
 .menu-options {
   display: grid;
   align-items: center;
-  background-color: var(--accent-color);
-  width: 20%;
+  background-color: var(--mood-color);
+  width: 50%;
+  top:0;
+  right: 0;
   justify-content: center;
   z-index: 3;
   position: absolute;
   border-radius: 5px;
 }
 
-.menu-options button{
-  background-color: var(--accent-color);
+.menu-options a{
+  background-color: var(--mood-color);
+  border: none;
+  padding-block: 2.5rem;
+
+  color: var(--white-color);
+
+  border-radius: 10px;
+
+}
+
+.ingredient-wrapper{
+  padding-top: 1rem;
+}
+
+.ingredient-wrapper .ingredient-list{
+  margin-top: 3rem;
+}
+
+.selected-ingredient-wrapper .ingredient-input-wrapper{
+  display: grid;
+}
+
+.selected-ingredient-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.ingredient-card-input{
+  position: relative;
+  background-color: var(--mood-color);
+  border-radius: 10px 10px 10px 10px;
+  height: 125px;
+
+  opacity: 0.8;
+}
+
+.ingredient-card-input{
+  background-color: var(--mood-color);
+  opacity: 0.8;
+  border-radius: 10px;
+}
+
+.delete-ingredient-button{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+
+.selected-ingredient-card-delete{
+  top:10px;
+  right:10px
+}
+
+.selected-ingredient-card-edit{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  color: var(--white-color);
+  font-weight: bold;
+}
+
+.close-button-svg{
+  position: absolute;
+  top:50px;
+  right: 50px;
+  padding: 2rem;
+}
+
+
+.recipe-name-input {
+  margin-top: 1rem;
+  display: grid;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.recipe-name-input label{
+  color: var(--mood-color);
+  font-weight: bolder;
+}
+
+.recipe-name-input input{
+  background-color: var(--white-color);
+  height: 30px;
+  font-size: var(--fs-500);
+  margin-top: 0.5rem;
+
+  border-radius: 8.5px;
+  border: none !important;
+
+  width: 35vw;
 }
