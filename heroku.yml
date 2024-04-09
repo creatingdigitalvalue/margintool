@@ -10,11 +10,6 @@ build:
 
 run:
   web:
-    command: npm start
-    detach: false
-
+    command: ["npm", "start"]
   back-end:
-    command: npm start
-    detach: false
-    environment:
-      - NODE_ENV=production
+    command: ["npm", "start"]
