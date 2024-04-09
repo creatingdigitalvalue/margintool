@@ -7,7 +7,6 @@ build:
   docker:
     web: ./front-end/Dockerfile
     back-end: ./back-end/Dockerfile
-    nginx: ./nginx/Dockerfile
 
 run:
   web:
@@ -19,9 +18,3 @@ run:
     detach: false
     environment:
       - NODE_ENV=production
-
-  nginx:
-    command: nginx -g "daemon off;"
-    detach: false
-    ports:
-      - "8000:80"
