@@ -7,17 +7,17 @@ build:
 run:
   web:
     command: npm start
-    detach: true
+    detach: false
 
   api:
     command: npm start
-    detach: true
+    detach: false
     environment:
       - NODE_ENV=production
 
   nginx:
     command: nginx -g "daemon off;"
-    detach: true
+    detach: false
     ports:
       - "8000:80"
 
