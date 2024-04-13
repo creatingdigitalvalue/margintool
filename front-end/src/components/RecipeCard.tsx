@@ -35,7 +35,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   
   const handleDeleteConfirm = () => {
     // Send DELETE request to the API
-    fetch(`http://localhost:3000/api/recipes/${recipe_id}`, {
+    fetch(`/api/recipes/${recipe_id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

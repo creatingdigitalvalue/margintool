@@ -17,7 +17,7 @@ const RecipePage: React.FC = () => {
 
   // Fetch ingredients from API
   useEffect(() => {
-    fetch('http://localhost:3000/api/recipes')
+    fetch('/api/recipes')
       .then(response => response.json())
       .then(data => {
         setRecipes(data);
@@ -40,7 +40,7 @@ const RecipePage: React.FC = () => {
   
     try {
       // Refetch recipes from API
-      const response = await fetch('http://localhost:3000/api/recipes');
+      const response = await fetch('/api/recipes');
       const data = await response.json();
       setRecipes(data);
     } catch (error) {
@@ -51,7 +51,7 @@ const RecipePage: React.FC = () => {
     
     // Inside IngredientPage component
 const reloadRecipes = () => {
-  fetch('http://localhost:3000/api/recipes')
+  fetch('/api/recipes')
     .then(response => response.json())
     .then(data => {
       setRecipes(data.recipes);

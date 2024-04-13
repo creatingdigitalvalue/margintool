@@ -22,7 +22,7 @@ const IngredientPage: React.FC = () => {
 
   // Fetch ingredients from API
   useEffect(() => {
-    fetch('http://localhost:3000/api/ingredients')
+    fetch('/api/ingredients')
       .then(response => response.json())
       .then(data => {
         setIngredients(data || []); // Ensure data is not undefined before setting state
@@ -32,7 +32,7 @@ const IngredientPage: React.FC = () => {
 
   useEffect(() => {
     if (selectedIngredient) {
-      fetch(`http://localhost:3000/api/ingredients/${selectedIngredient}`)
+      fetch(`/api/ingredients/${selectedIngredient}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to fetch additional information');
@@ -54,7 +54,7 @@ const IngredientPage: React.FC = () => {
   
   // Function to reload ingredients
   const reloadIngredients = () => {
-    fetch('http://localhost:3000/api/ingredients')
+    fetch('/api/ingredients')
       .then(response => response.json())
       .then(data => {
         setIngredients(data || []); // Ensure data is not undefined before setting state
@@ -64,7 +64,7 @@ const IngredientPage: React.FC = () => {
 
   // Function to handle adding a new ingredient
   const handleAddIngredient = (newIngredient: any) => {
-    fetch('http://localhost:3000/api/ingredients', {
+    fetch('/api/ingredients', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

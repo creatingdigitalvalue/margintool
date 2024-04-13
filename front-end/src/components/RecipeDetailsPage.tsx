@@ -20,7 +20,7 @@ const RecipeDetailsPage: React.FC = () => {
 
     // Fetch ingredient recipes using recipeId
     useEffect(() => {
-        fetch(`http://localhost:3000/api/recipe_ingredient/${recipeId}`)
+        fetch(`/api/recipe_ingredient/${recipeId}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
